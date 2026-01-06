@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GPS Tracker</title>
+
+  <link rel="stylesheet" href="./style.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+</head>
+
+<body>
+  <header>
+    <h1>GPS Tracker</h1>
+    <span class="statusDot statusOff" id="statusDot" title="Chưa chạy"></span>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="row">
+        <div class="col">
+          <label>Nguồn dữ liệu</label>
+          <select id="dataMode">
+            <option value="mock" selected>Mock (giả lập)</option>
+            <option value="thingspeak">ThingSpeak (proxy bảo mật)</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label>Refresh (giây)</label>
+          <input id="refreshSec" type="number" min="2" value="20" />
+        </div>
+      </div>
+
+      <div class="gap"></div>
+
+      <div class="row">
+        <button id="btnStart">Start</button>
+        <button id="btnStop">Stop</button>
+        <button id="btnRefresh">Refresh</button>
+      </div>
+
+      <div class="gap"></div>
+
+      <div class="muted">
+        Vị trí hiện tại: <b id="curLat">-</b>, <b id="curLng">-</b><br/>
+        Thời gian: <b id="curTime">-</b>
+      </div>
+
+      <div class="gap"></div>
+
+      <label>Lịch sử (20 điểm gần nhất)</label>
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Lat</th>
+              <th>Lng</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mapWrap">
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
